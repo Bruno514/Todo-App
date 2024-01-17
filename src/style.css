@@ -1,0 +1,154 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,200;6..12,400&display=swap");
+
+:root {
+  font-family: "Nunito Sans", Arial, Helvetica, sans-serif;
+  line-height: 1.2rem;
+  background-color: beige;
+  --header-bg: #fcd34d;
+
+  --text-md: clamp(1rem, 1.5vw, 1.5rem);
+  --text-sm: clamp(0.7rem, 2vw, 2rem);
+}
+
+/* Global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+select {
+  font-size: 1em;
+}
+
+table {
+  width: 100%;
+  margin-top: 1rem;
+  font-size: var(--text-md);
+}
+
+td {
+  text-align: center;
+}
+
+thead td {
+  background-color: #eab308;
+}
+
+.modal {
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+
+  font-size: var(--text-md);
+  border: thin solid black;
+  border-radius: .2rem;
+  box-shadow: 10px 10px rgb(0, 0, 0, 0.2);
+  padding: 1rem;
+}
+
+.modal input {
+  display: block;
+  width: 100%;
+}
+
+/* Main */
+
+.header-container {
+  background-color: var(--header-bg);
+  padding: 0.4rem;
+  box-shadow: 0px 1px rgb(0, 0, 0, 0.2);
+}
+
+.header {
+  color: var(--header-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header > * {
+  flex: 1;
+}
+
+.logo {
+  display: flex;
+  gap: 0.5rem;
+  font-size: var(--text-md);
+}
+
+.nav {
+  display: flex;
+  gap: 0.2rem;
+  justify-content: end;
+  flex-basis: 2px;
+}
+
+.nav-card {
+  display: flex;
+  align-items: center;
+  padding: 0.1rem;
+  background-color: #fef3c7;
+  border-radius: 0.5rem;
+  border: 4px solid transparent;
+  font-size: var(--text-md);
+}
+.nav-card:hover {
+  background-color: #fcd34d;
+  transition: border 500ms;
+  border: 4px solid #fef3c7;
+}
+
+.content-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+  margin-top: 1px;
+  background-color: #ffedd5;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 4px 0 rgb(0, 0, 0, 0.2);
+}
+
+.projects-dropdown {
+  font-size: var(--text-md);
+}
+
+.task-title {
+  max-width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Components */
+.act-btn {
+  border-radius: 0.5rem;
+  border: 2px solid transparent;
+}
+.act-btn:hover {
+  transition: border 250ms;
+  border: 3px solid #fff;
+}
+
+.add-btn {
+  color: green;
+}
+
+.del-btn {
+  color: red;
+}
+
+.edit-btn {
+  color: blue;
+}
+
+/* Media Queries */
+
+@media screen and (min-width: 1000px) {
+  .content-container {
+    width: 70%;
+    max-width: 60rem;
+  }
+}
