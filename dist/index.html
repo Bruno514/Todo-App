@@ -33,12 +33,9 @@
     </div>
     <div class="content-container">
       <div class="projects-dropdown">
-        <label for="projects">projects (0)</label>
+        <label for="projects"><h3>Projects (0)</h3></label>
         <br />
-        <select name="projects" id="projects">
-          <option value="default">default</option>
-          <option value="default2">default2</option>
-        </select>
+        <select name="projects" id="projects"></select>
         <span
           class="iconify edit-btn act-btn"
           data-icon="akar-icons:edit"
@@ -53,6 +50,11 @@
         ></span>
       </div>
 
+      <div class="tasks-action">
+        <h3>Tasks (0)</h3>
+        <button class="act-btn add-btn">Add Task</button>
+      </div>
+
       <table>
         <tr>
           <th>title</th>
@@ -63,8 +65,8 @@
 
         <tr>
           <td class="task-title">Clean house whatever</td>
-          <td>11/12/2000</td>
-          <td>Important</td>
+          <td class="task-due-date">11/12/2000</td>
+          <td class="task-priority">Important</td>
           <td class="task-actions">
             <span
               class="iconify edit-btn act-btn"
@@ -108,7 +110,7 @@
         <br />
         <label for="priority">task priority: </label>
         <select name="priority" id="priority" required>
-          <option value="not-important">not important</option>
+          <option value="not important">not important</option>
           <option value="a-bit-important">a bit important</option>
           <option value="important">important</option>
         </select>

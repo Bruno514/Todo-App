@@ -6,12 +6,19 @@ export default class TodoList {
     this.projects.push(project);
   }
 
-  getProject(index) {
-    const project = this.projects(index);
+  getProject(id) {
+    let project = undefined;
+
+    this.projects.forEach(element => {
+      if (id == element.id)  {
+        project = element;
+      }
+    });
+
     if (project === undefined) {
       throw new Error("Project not found.");
     }
 
-    return project;
+    return project
   }
 }

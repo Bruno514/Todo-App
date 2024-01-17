@@ -113,6 +113,11 @@ thead td {
 
 .projects-dropdown {
   font-size: var(--text-md);
+  margin-bottom: 1rem;
+}
+
+.tasks-action {
+  font-size: var(--text-md);
 }
 
 .task-title {

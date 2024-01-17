@@ -1,39 +1,108 @@
 import "./style.css";
 
-import { createIconify } from "./modules/utils";
+import { v4 as uuidv4 } from "uuid";
+
+import {
+  createIconAdd,
+  createIconDelete,
+  createIconEdit,
+} from "./modules/utils";
 import Project from "./modules/Project.js";
 import Task from "./modules/Task.js";
 import TodoList from "./modules/TodoList.js";
 
 const todoList = new TodoList();
 
-todoList.addProject(new Project("Default", "My default for to-do's"));
-const selectedProject = 0;
+const defaultProject = new Project("Default", "My Default for to-do's");
+defaultProject.addTask(
+  new Task("Clean House Whatever", "Clean my house", "20/02/2024", "important")
+);
+todoList.addProject(defaultProject);
+let selectedProject = todoList.projects[0].id;
 
 function DOMHandler() {
   document.title = "Todo App";
-  const root = document.getElementById("root");
 
+  const projectsSelect = document.querySelector("select#projects");
+
+  // Project modal
   const prModal = document.querySelector("[data-modal-project]");
+  // Task modal
   const taModal = document.querySelector("[data-modal-task]");
-
-  // Reusable ones
-  const _createIconAdd = () => {
-    return createIconify("mingcute:add-fill");
-  };
-  const _createIconEdit = () => {
-    return createIconify("akar-icons:edit");
-  };
-  const _createIconDelete = () => {
-    return createIconify("material-symbols:delete-outline");
-  };
 
   const _addProject = () => {
     const title = prModal.querySelector("#title").value;
     const desc = prModal.querySelector("#description").value;
 
-    todoList.addProject(new Project(title, desc));
-    console.log(todoList.projects);
+    const project = new Project(title, desc);
+    todoList.addProject(project);
+    _changeProjectsOptions();
+
+    projectsSelect.value = project.id;
+
+    selectedProject = projectsSelect.value;
+    _loadProject();
+  };
+
+  const _changeProjectsOptions = () => {
+    // Clear options first
+    projectsSelect.textContent = "";
+
+    todoList.projects.forEach((element) => {
+      const option = document.createElement("option");
+      option.value = element.id;
+      option.textContent = element.name;
+
+      projectsSelect.appendChild(option);
+    });
+  };
+
+  // Show tasks from project
+  const _loadProject = () => {
+    // Actually clear the table first
+    const toDelete = Array.from(document.querySelectorAll("tr")).slice(1);
+    toDelete.forEach((element) => {
+      element.remove();
+    });
+
+    const project = todoList.getProject(selectedProject);
+    const table = document.querySelector("table");
+
+    project.projectArray.forEach((task) => {
+      const tr = document.createElement("tr");
+
+      const tdTitle = document.createElement("td");
+      tdTitle.textContent = task.title;
+      tdTitle.classList.add("task-title");
+      const tdDueDate = document.createElement("td");
+      tdDueDate.textContent = task.dueDate;
+      tdDueDate.classList.add("task-due-date");
+      const tdPriority = document.createElement("td");
+      tdPriority.textContent = task.priority;
+      tdPriority.classList.add("tasks-priority");
+
+      tr.appendChild(tdTitle);
+      tr.appendChild(tdDueDate);
+      tr.appendChild(tdPriority);
+      table.appendChild(tr);
+    });
+  };
+
+  const _addTask = () => {
+    const title = taModal.querySelector("#title").value;
+    const desc = taModal.querySelector("#description").value;
+    const dueDate = taModal.querySelector("#due-date").value;
+    const priority = taModal.querySelector("#priority").value;
+
+    const task = new Task(title, desc, dueDate, priority);
+
+    todoList.getProject(selectedProject).addTask(task);
+    _loadProject();
+  };
+
+  const initialLoad = () => {
+    _changeProjectsOptions();
+    _loadProject();
   };
 
   const setupEventHandlers = () => {
@@ -44,18 +113,37 @@ function DOMHandler() {
       prModal.showModal();
     });
 
-    const projectModalSubmit = prModal.querySelector('button[type = "submit"]');
-    prModal.addEventListener("submit", (event) => {
+    // Add a project when clicking modal
+    // const projectModalSubmit = prModal.querySelector('button[type = "submit"]');
+    const projectModalSubmit = prModal.querySelector("form");
+    projectModalSubmit.addEventListener("submit", (event) => {
       event.preventDefault();
       _addProject();
+      prModal.close();
+    });
+
+    projectsSelect.addEventListener("change", (event) => {
+      selectedProject = event.target.value;
+      _loadProject();
+    });
+
+    const taskModalOpen = document.querySelector(".tasks-action button");
+    taskModalOpen.addEventListener("click", () => {
+      taModal.showModal();
+    });
+
+    const taskModalSubmit = taModal.querySelector("form");
+    taskModalSubmit.addEventListener("submit", (event) => {
+      event.preventDefault();
+      _addTask();
+      taModal.close();
     });
   };
 
-  return { setupEventHandlers };
+  return { setupEventHandlers, initialLoad };
 }
 
 const dom = DOMHandler();
-dom.setupEventHandlers();
 
-// dom.setupHeader();
-//dom.setupSidebar();
+dom.initialLoad();
+dom.setupEventHandlers();
