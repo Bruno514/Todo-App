@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="//code.iconify.design/1/1.0.6/iconify.min.js"></script>
+  <script defer src="main.bundle.js"></script></head>
+  <body id="root">
+    <div class="header-container">
+      <div class="header">
+        <div class="logo">
+          <div class="logo-icon">
+            <span class="iconify" data-icon="el:check"></span>
+          </div>
+          <p class="logo-title">todo app</p>
+        </div>
+
+        <div class="nav">
+          <div id="tasks-today" class="nav-card">
+            <span class="iconify" data-icon="mdi:calendar-outline"></span>
+            <p>today</p>
+          </div>
+          <div id="tasks-week" class="nav-card">
+            <span class="iconify" data-icon="lets-icons:calendar"></span>
+            <p>week</p>
+          </div>
+          <div id="task-all" class="nav-card">
+            <span class="iconify" data-icon="radix-icons:calendar"></span>
+            <p>all</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-container">
+      <div class="projects-dropdown">
+        <label for="projects">projects (0)</label>
+        <br />
+        <select name="projects" id="projects">
+          <option value="default">default</option>
+          <option value="default2">default2</option>
+        </select>
+        <span
+          class="iconify edit-btn act-btn"
+          data-icon="akar-icons:edit"
+        ></span>
+        <span
+          class="iconify del-btn act-btn"
+          data-icon="material-symbols:delete-outline"
+        ></span>
+        <span
+          class="iconify add-btn act-btn"
+          data-icon="material-symbols:add"
+        ></span>
+      </div>
+
+      <table>
+        <tr>
+          <th>title</th>
+          <th>due date</th>
+          <th>priority</th>
+          <th>actions</th>
+        </tr>
+
+        <tr>
+          <td class="task-title">Clean house whatever</td>
+          <td>11/12/2000</td>
+          <td>Important</td>
+          <td class="task-actions">
+            <span
+              class="iconify edit-btn act-btn"
+              data-icon="akar-icons:edit"
+            ></span>
+            <span
+              class="iconify del-btn act-btn"
+              data-icon="material-symbols:delete-outline"
+            ></span>
+            <span
+              class="iconify add-btn act-btn"
+              data-icon="material-symbols:add"
+            ></span>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <dialog data-modal-project class="modal">
+      <form action="#">
+        <label for="title">project title:</label>
+        <input type="text" name="title" id="title" required />
+
+        <label for="description">project description:</label>
+        <input type="text" name="description" id="description" required />
+
+        <button type="submit">Criar</button>
+      </form>
+    </dialog>
+
+    <dialog data-modal-task class="modal">
+      <form action="#">
+        <label for="title">task title:</label>
+        <input type="text" name="title" id="title" required />
+        <br />
+        <label for="description">task description:</label>
+        <input type="text" name="description" id="description" required />
+        <br />
+        <label for="due-date">task due date: </label>
+        <input type="date" name="due-date" id="due-date" required />
+        <br />
+        <label for="priority">task priority: </label>
+        <select name="priority" id="priority" required>
+          <option value="not-important">not important</option>
+          <option value="a-bit-important">a bit important</option>
+          <option value="important">important</option>
+        </select>
+        <br />
+        <button type="submit">Criar</button>
+      </form>
+    </dialog>
+  </body>
+</html>
