@@ -1,7 +1,10 @@
+import Project from "./Project";
+
 export default class TodoList {
   constructor() {
     this.projects = [];
   }
+
   addProject(project) {
     this.projects.push(project);
   }
@@ -9,8 +12,8 @@ export default class TodoList {
   getProject(id) {
     let project = undefined;
 
-    this.projects.forEach(element => {
-      if (id == element.id)  {
+    this.projects.forEach((element) => {
+      if (id == element.id) {
         project = element;
       }
     });
@@ -19,6 +22,14 @@ export default class TodoList {
       throw new Error("Project not found.");
     }
 
-    return project
+    return project;
+  }
+
+  deleteProject(project) {
+    const index = this.projects.indexOf(project);
+    this.projects.splice(index, 1);
+
+    // Return index cause why not
+    return index;
   }
 }

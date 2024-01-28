@@ -36,18 +36,17 @@
         <label for="projects"><h3>Projects (0)</h3></label>
         <br />
         <select name="projects" id="projects"></select>
-        <span
-          class="iconify edit-btn act-btn"
-          data-icon="akar-icons:edit"
-        ></span>
-        <span
-          class="iconify del-btn act-btn"
-          data-icon="material-symbols:delete-outline"
-        ></span>
-        <span
-          class="iconify add-btn act-btn"
-          data-icon="material-symbols:add"
-        ></span>
+
+        <button class="act-btn edit-btn">
+          <span class="iconify" data-icon="akar-icons:edit"></span>
+        </button>
+        <button class="act-btn del-btn">
+          <span class="iconify" data-icon="material-symbols:delete-outline">
+          </span>
+        </button>
+        <button class="act-btn add-btn">
+          <span class="iconify" data-icon="material-symbols:add"></span>
+        </button>
       </div>
 
       <div class="tasks-action">
@@ -60,37 +59,16 @@
           <th>title</th>
           <th>due date</th>
           <th>priority</th>
-          <th>actions</th>
-        </tr>
-
-        <tr>
-          <td class="task-title">Clean house whatever</td>
-          <td class="task-due-date">11/12/2000</td>
-          <td class="task-priority">Important</td>
-          <td class="task-actions">
-            <span
-              class="iconify edit-btn act-btn"
-              data-icon="akar-icons:edit"
-            ></span>
-            <span
-              class="iconify del-btn act-btn"
-              data-icon="material-symbols:delete-outline"
-            ></span>
-            <span
-              class="iconify add-btn act-btn"
-              data-icon="material-symbols:add"
-            ></span>
-          </td>
         </tr>
       </table>
     </div>
 
     <dialog data-modal-project class="modal">
       <form action="#">
-        <label for="title">project title:</label>
+        <label for="title">title:</label>
         <input type="text" name="title" id="title" required />
 
-        <label for="description">project description:</label>
+        <label for="description">description:</label>
         <input type="text" name="description" id="description" required />
 
         <button type="submit">Criar</button>
@@ -99,16 +77,16 @@
 
     <dialog data-modal-task class="modal">
       <form action="#">
-        <label for="title">task title:</label>
+        <label for="title">title:</label>
         <input type="text" name="title" id="title" required />
         <br />
-        <label for="description">task description:</label>
+        <label for="description">description:</label>
         <input type="text" name="description" id="description" required />
         <br />
-        <label for="due-date">task due date: </label>
+        <label for="due-date">due date:</label>
         <input type="date" name="due-date" id="due-date" required />
         <br />
-        <label for="priority">task priority: </label>
+        <label for="priority">priority:</label>
         <select name="priority" id="priority" required>
           <option value="not important">not important</option>
           <option value="a-bit-important">a bit important</option>
